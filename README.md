@@ -26,6 +26,11 @@ To check Node.js installed, run
 
 node -v (This shows node version, if installed)
 
-Run `index.js` file using
+Run `index.js` file using:
 
 npm run start
+
+
+Run tests  using:
+
+npm run test
