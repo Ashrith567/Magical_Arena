@@ -5,6 +5,11 @@ class Arena {
         this.playerA = playerA;
         this.playerB = playerB;
         this.gameWinner = null;
+        if (this.playerA.health <= this.playerB.health) {
+            this.currentAttacker = this.playerA;
+        } else {
+            this.currentAttacker = this.playerB;
+        }
     }
 
     fight() {
@@ -12,9 +17,12 @@ class Arena {
         if (this.playerA.health <= this.playerB.health) {
             attacker = this.playerA;
             defender = this.playerB;
+            this.currentAttacker = this.playerA
         } else {
             attacker = this.playerB;
             defender = this.playerA;
+            this.currentAttacker = this.playerB;
+
         }
 
         while (attacker.isAlive() && defender.isAlive()) {
@@ -23,7 +31,7 @@ class Arena {
 
             const attack = attacker.attack();
             const defence = defender.defend();
-            let netDamage = parseInt( Math.floor(Math.max(attack.attackingDamage - defence.defencePower, 0)));
+            let netDamage = parseInt(Math.floor(Math.max(attack.attackingDamage - defence.defencePower, 0)));
 
             if (attacker.attackPower) {
                 console.log(`${attacker.name} rolled a dice value of ${attack.diceValue}. Total Attack Damage: ${attack.attackingDamage}.`);
